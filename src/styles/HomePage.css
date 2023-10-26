@@ -1,0 +1,39 @@
+.intro {
+    animation: fadeInAnimation ease 4s;
+
+    align-content: center;
+    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.introtitle {
+    font-size: 148px;
+    padding-top: 100px;
+    margin: 0px;
+    background-image: linear-gradient(45deg, #93E9BE, #1384bc);
+
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.steam {
+    font-size: 24px;
+}

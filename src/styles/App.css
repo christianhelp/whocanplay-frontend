@@ -1,0 +1,13 @@
+.App{
+  text-align: center;
+}
+
+body {
+  background-color: #1A1B1C;
+}
+
+.outletContainer {
+  width: 100vw;
+  height: 90vh;
+}
+
