@@ -1,0 +1,109 @@
+.intro {
+    animation: fadeInAnimation ease 2.5s;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.introtitle {
+    font-size: 148px;
+    padding-top: 6%;
+    padding-bottom: 1%;
+    margin: 0px;
+    background-image: linear-gradient(45deg, #1f6dc7, #78aeec);
+
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.credits{
+    font:bold;
+}
+
+.navs{
+    display: flex;
+    height: 20%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.navs li {
+    display: block;
+    text-decoration: none;
+    color: white;
+    
+}
+
+.scroll-link:not(.active):hover {
+    background-color: gray;
+}
+.scroll-link{ 
+    color: white;
+    text-decoration: none;
+    background-color: #5c9ce6;
+    padding: 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    font-size: 24px;
+}
+.scroll-link:hover{
+    cursor: pointer;
+}
+
+.about{
+    display: flex;
+    color:#1f6dc7;
+    flex-direction: column;
+
+}
+.about h1 {
+    font-size: 40px;
+    color:#5c9ce6;
+}
+
+
+.description{
+    display: flex;
+    flex-direction: column;
+    font: 24px bold;
+    justify-content: center;
+    align-items: center;
+    padding-left: 25%;
+    width: 50%;
+    
+    
+    
+}
+.description p {
+    background-color: white;
+    border-radius: 1rem;
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+}
+
+
+.how h1{
+    font-size: 40px;
+}

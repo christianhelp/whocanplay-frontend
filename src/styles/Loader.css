@@ -1,0 +1,14 @@
+.loader {
+    display: flex;
+    height: 100%;
+    width: auto;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    padding-top: 10%;
+    padding-left: 30%;
+    padding-right: 30%;
+    /* Use the full viewport height for vertical centering */
+}
+

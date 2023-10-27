@@ -1,0 +1,14 @@
+.nopage{
+    padding-top: 10px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nopage h1, 
+.nopage img{
+    margin: 20px;
+}
+
