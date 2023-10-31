@@ -6,8 +6,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-
-    color: white;
+    color: whitesmoke;
 }
 
 @keyframes fadeInAnimation {
@@ -38,7 +37,9 @@
 .credits{
     font:bold;
 }
-
+.navbuttons{
+    padding-bottom: 18%;
+}
 .navs{
     display: flex;
     height: 20%;
@@ -52,36 +53,38 @@
 .navs li {
     display: block;
     text-decoration: none;
-    color: white;
-    
+    color: white; 
 }
 
 .scroll-link:not(.active):hover {
     background-color: gray;
 }
+
 .scroll-link{ 
     color: white;
     text-decoration: none;
-    background-color: #5c9ce6;
+    background-color: #1f6dc7;
     padding: 1.5rem;
     margin: 0 0.5rem;
     border-radius: 0.5rem;
     transition: all 0.3s;
     font-size: 24px;
 }
+
 .scroll-link:hover{
     cursor: pointer;
 }
 
 .about{
     display: flex;
-    color:#1f6dc7;
+    color:whitesmoke;
+    background-color: #5c9ce6;
     flex-direction: column;
-
+    padding-bottom: 4%;
 }
+
 .about h1 {
     font-size: 40px;
-    color:#5c9ce6;
 }
 
 
@@ -91,19 +94,33 @@
     font: 24px bold;
     justify-content: center;
     align-items: center;
-    padding-left: 25%;
-    width: 50%;
-    
-    
-    
+    padding-left: 20%;
+    padding-right: 20%;
 }
+
 .description p {
-    background-color: white;
     border-radius: 1rem;
-    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    font-size: 110%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}  
+
+.how{
+    display: flex;
+    flex-direction: column;
+    font: 24px bold;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    color: whitesmoke;
 }
-
-
 .how h1{
     font-size: 40px;
 }
+
+.how p {
+    border-radius: 1rem;
+    font-size: 110%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
