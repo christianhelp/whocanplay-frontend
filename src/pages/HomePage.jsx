@@ -16,10 +16,7 @@ export default function HomePage(){
     return (
         // We will want to remove this loader function once we are done. This is just a placeholder for it
         <div className='homepage'>
-            {
-                loading ? 
-           <Loader/>
-            :
+            
            <div className="intro">
                 <h1 className="introtitle">Who Can Play?</h1>
                 <h1 className="credits">Created by Christian Walker,Lauren Grissom, and Caroline Oliver</h1>
@@ -82,7 +79,6 @@ export default function HomePage(){
                     </p>
                 </div>
             </div>
-            }
         </div>
             
     );

@@ -8,7 +8,7 @@ export default function Loader(){
             <PacmanLoader
                 color={"#5c9ce6"}
                 size={50}
-            
+                // loading={false}
             />
         </div>
     )
