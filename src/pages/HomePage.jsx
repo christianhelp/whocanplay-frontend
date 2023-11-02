@@ -19,7 +19,7 @@ export default function HomePage(){
             
            <div className="intro">
                 <h1 className="introtitle">Who Can Play?</h1>
-                <h1 className="credits">Created by Christian Walker,Lauren Grissom, and Caroline Oliver</h1>
+                <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Created by Christian Walker,Lauren Grissom, and Caroline Oliver</h1>
                 <h1 className="steam">Powered by The Steam Hardware Survey</h1>
                 <nav className="navbuttons">
                     <ul className="navs">

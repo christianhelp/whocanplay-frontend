@@ -33,7 +33,7 @@ export default function Explore(){
                 :
             <div className="explore-contents">
                 <h1>
-                Explore Page!
+                Check Out These Popular Games!
                 </h1>
                 <div className="games">
                         {games.map((game,index) =>(
