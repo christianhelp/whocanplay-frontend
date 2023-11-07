@@ -1,8 +1,9 @@
 import "../styles/HomePage.css";
 import { useEffect,useState } from "react";
-import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import {Link as ScrollLink,Element,Events,animatedScroll as scroll} from 'react-scroll';
+import ScrollButton from "../components/ScrollButton";
+
 export default function HomePage(){
     const [loading,setLoading] = useState(true);
 
@@ -13,13 +14,14 @@ export default function HomePage(){
         return () => {};
     }
     ),[]);
+    
     return (
         // We will want to remove this loader function once we are done. This is just a placeholder for it
-        <div className='homepage'>
-            
+        <div className='homepage'> 
            <div className="intro">
+                <ScrollButton/>
                 <h1 className="introtitle">Who Can Play?</h1>
-                <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Created by Christian Walker,Lauren Grissom, and Caroline Oliver</h1>
+                <h1 className="mb-4 text-4xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl dark:text-white">Created by Christian Walker, Lauren Grissom, and Caroline Oliver</h1>
                 <h1 className="steam">Powered by The Steam Hardware Survey</h1>
                 <nav className="navbuttons">
                     <ul className="navs">
@@ -28,7 +30,6 @@ export default function HomePage(){
                         <li><Link to="/search" className="scroll-link">Try It Out!</Link></li>
                     </ul>
                 </nav>
-
                 <div name="about" className="about">
                     <h1>
                         About
