@@ -11,6 +11,7 @@
     animation: fadeInAnimation ease 2.5s;
     align-content: center;
     justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
     display: flex;
@@ -133,6 +134,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .steam{
-    display: inline;
-    width: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    padding-bottom: 30px;
+    align-items: center;
 }
+

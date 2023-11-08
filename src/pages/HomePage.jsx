@@ -1,10 +1,10 @@
 import "../styles/HomePage.css";
-import { useEffect,useState,useRef } from "react";
+import { useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
-import {Link as ScrollLink,Element,Events,animatedScroll as scroll} from 'react-scroll';
+import {Link as ScrollLink} from 'react-scroll';
 import ScrollButton from "../components/ScrollButton";
 import Typed from 'typed.js';
-
+import { BiGhost } from "react-icons/bi";
 
 export default function HomePage(){
 
@@ -20,7 +20,7 @@ export default function HomePage(){
       backSpeed: 70,
       loop:true,
       smartBackspace:true,
-      cursorChar:"㋡"
+      showCursor:false
     });
 
     // Destropying
@@ -36,7 +36,11 @@ export default function HomePage(){
                 <ScrollButton/>
                 <h1 className="introtitle">Who Can Play?</h1>
                 <h1 className="mb-4 text-4xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl dark:text-white">Created by Christian Walker, Lauren Grissom, and Caroline Oliver</h1>
-                <h1><span className="steam" ref={el}></span></h1>
+                <div className="steam">
+                    <h1><span ref={el}></span></h1>
+                   <BiGhost/>
+                </div>
+                
                 <nav className="navbuttons">
                     <ul className="navs">
                         <li><ScrollLink to="about" smooth={true} duration={500} spy={true} offset={-50} className="scroll-link">About</ScrollLink></li>
