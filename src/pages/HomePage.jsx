@@ -1,20 +1,34 @@
 import "../styles/HomePage.css";
-import { useEffect,useState } from "react";
+import { useEffect,useState,useRef } from "react";
 import { Link } from "react-router-dom";
 import {Link as ScrollLink,Element,Events,animatedScroll as scroll} from 'react-scroll';
 import ScrollButton from "../components/ScrollButton";
+import Typed from 'typed.js';
+
 
 export default function HomePage(){
-    const [loading,setLoading] = useState(true);
 
-    useEffect((()=>{
-        setTimeout(()=>{
-            setLoading(false);
-        },1000);
-        return () => {};
-    }
-    ),[]);
-    
+    const el = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ["Powered by The Steam Hardware Survey"], // Strings to display
+      // Speed settings, try diffrent values untill you get good results
+      startDelay:400,
+      backDelay:400,
+      typeSpeed: 50,
+      backSpeed: 70,
+      loop:true,
+      smartBackspace:true,
+      cursorChar:"㋡"
+    });
+
+    // Destropying
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
     return (
         // We will want to remove this loader function once we are done. This is just a placeholder for it
         <div className='homepage'> 
@@ -22,7 +36,7 @@ export default function HomePage(){
                 <ScrollButton/>
                 <h1 className="introtitle">Who Can Play?</h1>
                 <h1 className="mb-4 text-4xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl dark:text-white">Created by Christian Walker, Lauren Grissom, and Caroline Oliver</h1>
-                <h1 className="steam">Powered by The Steam Hardware Survey</h1>
+                <h1><span className="steam" ref={el}></span></h1>
                 <nav className="navbuttons">
                     <ul className="navs">
                         <li><ScrollLink to="about" smooth={true} duration={500} spy={true} offset={-50} className="scroll-link">About</ScrollLink></li>
@@ -30,7 +44,7 @@ export default function HomePage(){
                         <li><Link to="/search" className="scroll-link">Try It Out!</Link></li>
                     </ul>
                 </nav>
-                <div name="about" className="about">
+                <div name="about" className="about" id="about_id">
                     <h1>
                         About
                     </h1>
@@ -68,9 +82,7 @@ export default function HomePage(){
 
                 </p>
                     <p>
-
                         Augue interdum velit euismod in pellentesque massa placerat duis ultricies. Tortor posuere ac ut consequat. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Netus et malesuada fames ac turpis egestas. Bibendum arcu vitae elementum curabitur vitae nunc. Viverra maecenas accumsan lacus vel facilisis volutpat est velit. Leo vel fringilla est ullamcorper eget nulla facilisi. Mauris nunc congue nisi vitae suscipit tellus. Nam at lectus urna duis. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Ornare quam viverra orci sagittis eu volutpat odio. Nunc id cursus metus aliquam eleifend mi. Magna fringilla urna porttitor rhoncus dolor purus non enim. Auctor augue mauris augue neque gravida in fermentum. Suspendisse interdum consectetur libero id faucibus. Elementum nisi quis eleifend quam adipiscing vitae proin. Donec et odio pellentesque diam volutpat commodo sed egestas egestas. Aliquam purus sit amet luctus venenatis.
-
                     </p>
                     <p>
                         Massa enim nec dui nunc mattis enim ut tellus elementum. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Viverra aliquet eget sit amet tellus cras adipiscing enim. Nunc non blandit massa enim. Ultricies leo integer malesuada nunc vel risus commodo viverra maecenas. Amet mauris commodo quis imperdiet massa tincidunt. Volutpat consequat mauris nunc congue nisi vitae suscipit. Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia. Egestas maecenas pharetra convallis posuere morbi leo urna. Nisi lacus sed viverra tellus. Erat imperdiet sed euismod nisi porta lorem mollis. Arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc. Feugiat nisl pretium fusce id velit ut tortor pretium. Dui id ornare arcu odio ut.
