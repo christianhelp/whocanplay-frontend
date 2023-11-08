@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {Link as ScrollLink} from 'react-scroll';
 import ScrollButton from "../components/ScrollButton";
 import Typed from 'typed.js';
-import { BiGhost } from "react-icons/bi";
+import {FaSteamSymbol} from "react-icons/fa";
 
 export default function HomePage(){
 
@@ -38,7 +38,7 @@ export default function HomePage(){
                 <h1 className="mb-4 text-4xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl dark:text-white">Created by Christian Walker, Lauren Grissom, and Caroline Oliver</h1>
                 <div className="steam">
                     <h1><span ref={el}></span></h1>
-                   <BiGhost/>
+                    <FaSteamSymbol/>
                 </div>
                 
                 <nav className="navbuttons">
