@@ -67,17 +67,16 @@
 }
 
 .scroll-link:not(.active):hover {
-    background-color: gray;
+    background-color: rgb(107, 114, 128);
 }
 
 .scroll-link{ 
-    color: white;
+    color: whitesmoke;
     text-decoration: none;
     background-color: #1f6dc7;
     padding: 1.5rem;
     margin: 0 0.5rem;
     border-radius: 0.5rem;
-    transition: all 0.3s;
     font-size: 24px;
 }
 

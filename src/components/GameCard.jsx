@@ -1,4 +1,5 @@
-import { Button } from "react-scroll";
+import { Link } from "react-router-dom"
+
 
 export default function GameCard(gameName,gameGraphics,directX,gameProcessor,gameDescription,gamePercent,imageURL,index){
 
@@ -18,15 +19,15 @@ export default function GameCard(gameName,gameGraphics,directX,gameProcessor,gam
                 <b>DirectX Version</b>:
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-200"> {directX}</p>
                 
-                {/* <div className="text-3xl p-2 group border w-fit grid" >
-                    <div className="[grid-area:1/1] h-10 w-10 transition ease-in-out delay-300 group-hover:delay-[0s] duration-300 group-hover: group-hover:translate-x-10">-</div>
-                </div>       */}
-                <button type="button" className=" group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <Link to="/gameinfo" className=" group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Details
-                    <svg className=" transition ease-in-out delay-150 group-hover:translate-x-4 w-6 h-5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <svg className=" transition ease-in-out delay-100 group-hover:translate-x-4 w-6 h-5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                     </svg>
-                </button>
+                </Link>
+                    
+                    
+              
             </div>
         </div>
     )
