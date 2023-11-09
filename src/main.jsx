@@ -7,8 +7,8 @@ import HomePage from "./pages/HomePage";
 import Explore from "./pages/Explore";
 import NoPage from "./pages/NoPage";
 import Search from './pages/Search';
-
-
+import GameInfo from './pages/GameInfo';
+import Credits from './pages/Credits';
 
 
 const domRoot = document.getElementById("root");
@@ -20,8 +20,10 @@ root.render(
       <Route path="/"         element={<App />}>
         <Route index             element={<HomePage />} />
         <Route path="explore"    element={<Explore/>}   />  
-        <Route path="search"     element={<Search/>}    />                              
-        <Route path="*"         element={<NoPage/>}     />
+        <Route path="search"     element={<Search/>}    />  
+        <Route path="gameinfo"   element={<GameInfo/>}  />   
+        <Route path="credits"    element={<Credits/>}   />                         
+        <Route path="*"          element={<NoPage/>}    />
       </Route>
     </Routes>
   </BrowserRouter>

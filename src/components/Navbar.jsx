@@ -12,6 +12,7 @@ const Navbar = () =>{
                     <ul className="otherlinks">
                         <li><NavLink to="/explore">Explore</NavLink></li>
                         <li><NavLink to="/search">Search</NavLink></li>
+                        <li><NavLink to="/credits">Credits</NavLink></li>
                     </ul>   
                 </div>
             </div>

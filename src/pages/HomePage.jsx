@@ -45,7 +45,12 @@ export default function HomePage(){
                     <ul className="navs">
                         <li><ScrollLink to="about" smooth={true} duration={500} spy={true} offset={-50} className="scroll-link">About</ScrollLink></li>
                         <li><ScrollLink to="how" smooth={true} duration={500} spy={true} offset={-50} className="scroll-link">How Does It Work?</ScrollLink></li>
-                        <li><Link to="/search" className="scroll-link">Try It Out!</Link></li>
+                        <li className="flex flex-row">
+                            <Link to="/search" className="scroll-link">Find Games</Link>
+                            <svg className=" transition ease-in-out delay-150 group-hover:translate-x-4 w-6 h-5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </li>
                     </ul>
                 </nav>
                 <div name="about" className="about" id="about_id">
