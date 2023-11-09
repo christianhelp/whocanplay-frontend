@@ -24,14 +24,14 @@ export default function Explore(){
         })
         },[]);
     return (
-        <div className="explore">
+        <div className="flex flex-col justify-center items-center">
             {
                 loading ? 
                 <Loader/>
                 :
             <div className="explore-contents">
                 <h1 className="pt-4 mb-4 text-4xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl dark:text-white ">Check Out These Popular Games!</h1>
-                <div class="grid grid-cols-5 gap-4 px-8">
+                <div class="grid grid-cols-4 gap-4 px-8">
                     {games.map((game,index) =>(
                         GameCard(game.name,game.graphics,game.directX,game.processor,
                         game.description,game.percent,game.imageURL,index)
