@@ -57,6 +57,11 @@
 }
 
 .homeicon{
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px; 
+}
+
+.homeicon:hover{
+    background-color: #1e4547;
+    border-radius: 0.5rem;
 }
