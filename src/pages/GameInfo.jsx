@@ -7,15 +7,25 @@ export default function GameInfo(){
     const Game = location.state;
 
     return (
-        //Come back and pretty this
+        //FIXME: Come back and pretty this :)
         <div>
            {
             // Handles if someone attempts to go directly to the route
             Game ? 
-            <div className='flex flex-col items-center justify-center'>
-                <h1 className='text-4xl pt-8 pb-2'>{Game.gameName}</h1>
-                <div className='flex  items-center justify-center pt-12'>
-                    <div className='flex flex-col pr-8 justify-center items-center'>
+            <div className=' pl-24 flex flex-col items-center justify-center'>
+                <h1 className='text-6xl pt-8 pb-2'>{Game.gameName}</h1>
+                <div className='flex  items-center justify-center pt-12 pr-8'>
+                    <p className=" group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg className=" -scale-x-100 transition ease-in-out delay-100 group-hover:-translate-x-4 w-6 h-5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    Explore
+                    
+                </p>
+                    <div className='flex flex-col pr-8 pb-4 justify-center items-center'>
+                        <div className='pb-48'>
+                            <p className='text-6xl'>{Game.gamePercent} Can Play!</p>
+                        </div>
                         <div className='pb-6'>
                             <b className='text-3xl'>Minimum Graphics:</b>
                             <p className=" font-normal text-gray-700 dark:text-gray-200"> {Game.gameGraphics}</p>
@@ -25,7 +35,6 @@ export default function GameInfo(){
                             <b className='text-3xl'>Minimum Processor:</b>
                             <p className="font-normal text-gray-700 dark:text-gray-200"> {Game.gameProcessor}</p>
                         </div>
-
                         <div>
                             <b className='text-3xl'>DirectX Version:</b>
                             <p className=" font-normal text-gray-700 dark:text-gray-200"> {Game.directX}</p> 
