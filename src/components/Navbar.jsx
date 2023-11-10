@@ -1,6 +1,5 @@
 import "../styles/Navbar.css";
 import { NavLink } from "react-router-dom";
-import homeIcon from "../assets/home_icon.png";
 import {AiOutlineHome} from "react-icons/ai";
 
 const Navbar = () =>{
