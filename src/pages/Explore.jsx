@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 import "../styles/App.css";
-import "../styles/Explore.css";
 import Loader from "../components/Loader";
 import GameCard from "../components/GameCard";
 import ErrorLoading from "../components/ErrorLoading";
