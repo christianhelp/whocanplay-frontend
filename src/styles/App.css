@@ -3,8 +3,10 @@
 }
 
 body {
-  background-color: #061323;
-  /* Might need to unfuck later */
+  @apply
+  bg-[#061323]
+  /* Come back and check this */
+  overflow-x-hidden
   
 }
 

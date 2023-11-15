@@ -13,7 +13,6 @@ export default function GameCard(gameName,gameGraphics,directX,gameProcessor,gam
     }
 
 
-
     return (
         // FIXME: using relative and absolute overrides the narvbar. 
         <div className=" flex flex-col items-center max-w-sm max-h-min bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={index}>
@@ -27,9 +26,6 @@ export default function GameCard(gameName,gameGraphics,directX,gameProcessor,gam
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                     </svg>
                 </Link>
-                    
-                    
-              
             </div>
         </div>
     )
