@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function GameCard(gameName,gameGraphics,directX,gameProcessor,gameDescription,gamePercent,imageURL,index){
+export default function GameCard({gameName,gameGraphics,directX,gameProcessor,gameDescription,gamePercent,imageURL,index}){
     const Game = {
         'gameName':gameName,
         'gameGraphics':gameGraphics,
