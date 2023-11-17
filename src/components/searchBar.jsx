@@ -20,8 +20,6 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
         console.log("Searchinput is:",searchInput);
         const searchParams = {
             "name":searchInput,
-            "directX":"Version 12",
-            "description":"Fortnite Battle pass"
         }
         setLoading(true);
         axios.get("http://localhost:8080/search",{

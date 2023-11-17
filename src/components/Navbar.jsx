@@ -10,7 +10,6 @@ const Navbar = () =>{
                     <NavLink to="/"> <AiOutlineHome className="homeicon"/> </NavLink>
                     <ul className="otherlinks">
                         <li><NavLink to="/explore">Explore</NavLink></li>
-                        <li><NavLink to="/search">Search</NavLink></li>
                         <li><NavLink to="/credits">Credits</NavLink></li>
                     </ul>   
                 </div>
