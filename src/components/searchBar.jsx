@@ -3,10 +3,9 @@ import { useState } from "react";
 
 
 //We need to send in all of our request setters
-export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,filterOptions}){
+export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchInputs}){
     
     const[searchInput,setSearchInput] = useState('');
-
     const handleInputChange = (e)=>{
         setSearchInput(e.target.value);
     }
@@ -16,10 +15,12 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
     const handleSearchRequest = async (e) =>{
         e.preventDefault();
         if (searchInput.length<=0) return;
-      //We then set the data which will trigger the data 
-        console.log("Searchinput is:",searchInput);
+      
+        
+        //Where all of our search parameters are specified. We need to watch out for the order here and find a fool proof way to handle that
+        //Best I can think of right now is to go through all of them and filter by if they are turned true or not
         const searchParams = {
-            "name":searchInput,
+            "name":searchInput
         }
         setLoading(true);
         axios.get("http://localhost:8080/search",{

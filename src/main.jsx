@@ -14,7 +14,7 @@ const domRoot = document.getElementById("root");
 const root = createRoot(domRoot);
 
 root.render(
-<BrowserRouter>
+  <BrowserRouter>
     <Routes>
       <Route path="/"         element={<App />}>
         <Route index             element={<HomePage />} />
@@ -25,4 +25,5 @@ root.render(
       </Route>
     </Routes>
   </BrowserRouter>
+
   );
