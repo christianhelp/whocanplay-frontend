@@ -6,7 +6,6 @@ import "./styles/index.css";
 import HomePage from "./pages/HomePage";
 import Explore from "./pages/Explore";
 import NoPage from "./pages/NoPage";
-import Search from './pages/Search';
 import GameInfo from './pages/GameInfo';
 import Credits from './pages/Credits';
 
