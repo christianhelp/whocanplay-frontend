@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 //We need to send in all of our request setters
-export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage}){
+export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,filterOptions}){
     
     const[searchInput,setSearchInput] = useState('');
 

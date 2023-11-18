@@ -1,14 +1,13 @@
-import "../styles/NoPage.css";
 import DizzyRobot from "../assets/dizzy-robot.png";
 
 export default function NoPage(){
     return (
-        <div className="nopage">
-            <h1>
+        <div className="flex flex-col text-3xl items-center justify-center m-5 pt-5">
+            <h1 className="pb-10">
                 Error! No page here!
             </h1>
             {/*Image Credit: "https://www.flaticon.com/free-icons/error"*/}
-            <img src={DizzyRobot}></img>
+            <img className="pb-8" src={DizzyRobot}></img>
             <h1>(Skill Issue tbh) </h1>
         </div>
     )
