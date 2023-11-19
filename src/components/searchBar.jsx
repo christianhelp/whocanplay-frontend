@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 
+import { searchParametersEmpty } from "../utils/SearchParameters";
 
 //We need to send in all of our request setters
-export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchInputs}){
+export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchParameters}){
     
     const[searchInput,setSearchInput] = useState('');
+    const[searchRequestParameters,setSearchRequestParameters] = useState(searchParameters);
+
     const handleInputChange = (e)=>{
         setSearchInput(e.target.value);
     }
@@ -14,7 +17,7 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
     //This will handle making our request
     const handleSearchRequest = async (e) =>{
         e.preventDefault();
-        if (searchInput.length<=0) return;
+        if (searchInput.length<=0 && searchParametersEmpty(searchParameters)) return;
       
         
         //Where all of our search parameters are specified. We need to watch out for the order here and find a fool proof way to handle that
@@ -81,10 +84,10 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
           placeholder="Search Thousands of Games!"
           value={searchInput}
           onChange={handleInputChange}
-          required
         />
         <button
           type="submit"
+          
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
           Search

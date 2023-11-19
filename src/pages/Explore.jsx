@@ -4,7 +4,7 @@ import "../styles/App.css";
 import Loader from "../components/Loader";
 import GameCard from "../components/GameCard";
 import ErrorLoading from "../components/ErrorLoading";
-import SearchBar from "../components/searchBar";
+import SearchBar from "../components/SearchBar";
 import Filters from "../components/Filters";
 
 export default function Explore(){
@@ -26,9 +26,6 @@ export default function Explore(){
     
     //I think we need two maps ngl. One is for all of the processing stuff and another would be for what arguments actually need to be passed
     const[searchParameters,setSearchParameters] = useState(new Map([["Alphabetically",new Set()]]));
-
-
-    console.log("Explore called!");
 
     //Use effect for explore query
     useEffect( ()=>{
@@ -59,15 +56,17 @@ export default function Explore(){
         })
         .then(res=>{
             const data = res.data;
-            
+            console.log(data);
             //This maps all of the values 
             //(This literally took me an hour of learning actual Javascript and could have easily been done with a simple for loop, but I am different)
-            Object.entries(data).map((entryPairs)=>{
-                console.log("Entry:",entryPairs[0],entryPairs[1])
-                setFilterOptions(new Map(filterOptions.set(entryPairs[0],entryPairs[1])))
-                setSearchParameters(new Map(searchParameters.set(entryPairs[0],new Set())));
+            Object.entries(data).map(([k,v])=>{
+                //Assigns the new value with the k-v pair
+                //We do not need duplicates for these so instead we will just create a set and then grab the array from that
+                const filteredEntries = new Set(v);
+                setFilterOptions(new Map(filterOptions.set(k,Array.from(filteredEntries))))
+                setSearchParameters(new Map(searchParameters.set(k,new Set())));
             });
-            console.log("Search Params",searchParameters);
+            // console.log("Search Params",searchParameters);
             setLoading(false);
             setSuccess(true);
         })
@@ -79,6 +78,7 @@ export default function Explore(){
         })
             return ()=>{}
         },[]);
+
     return (
         <div className="flex flex-col justify-center items-center">
             {
@@ -88,16 +88,26 @@ export default function Explore(){
                 !success ?
                 <div className="flex flex-col pt-8">
                     <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} filterOptions={["Test","dicks"]}/>
-                    <ErrorLoading errorMessage={errorLoadingMessage}/>
+                    <div className="flex flex-col items-center pb-8">
+                        <ErrorLoading errorMessage={errorLoadingMessage}/>
+                    <div className='flex'>
+                        <button onClick={()=>{setSuccess(true)}} className=" group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg className=" -scale-x-100 pl-4 transition ease-in-out delay-100 group-hover:-translate-x-4 w-8 h-6 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        Go Back
+                        </button>
+                    </div>
+                    </div>
                 </div>
                 :
             <div className="pt-5">
                 <h1 className="pt-4 mb-4 text-3xl font-extrabold text-gray-900  dark:text-white ">
                     Search and Filter For Games
                     </h1>
-                <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchInputs={searchParameters}/>
+                <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchParameters={searchParameters}/>
                 <div className="flex">
-                    <Filters filterOptions={filterOptions} searchParams={searchParameters} setSearchParams={setSearchParameters}/>
+                    <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters}/>
                     <div className="pt-4 grid grid-cols-4 gap-4 px-8">
                     {games.map((game,key) =>(
                         <GameCard key={key} gameName={game.name} gameGraphics={game.graphics} directX={game.direct} 
