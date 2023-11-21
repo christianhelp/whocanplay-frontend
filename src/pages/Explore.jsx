@@ -58,12 +58,10 @@ export default function Explore(){
             const data = res.data;
             console.log(data);
             //This maps all of the values 
-            //(This literally took me an hour of learning actual Javascript and could have easily been done with a simple for loop, but I am different)
             Object.entries(data).map(([k,v])=>{
                 //Assigns the new value with the k-v pair
-                //We do not need duplicates for these so instead we will just create a set and then grab the array from that
-                const filteredEntries = new Set(v);
-                setFilterOptions(new Map(filterOptions.set(k,Array.from(filteredEntries))))
+                
+                setFilterOptions(new Map(filterOptions.set(k,v)))
                 setSearchParameters(new Map(searchParameters.set(k,new Set())));
             });
             // console.log("Search Params",searchParameters);

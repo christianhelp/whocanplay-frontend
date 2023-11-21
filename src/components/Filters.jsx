@@ -2,23 +2,21 @@
 
 import { useState, useEffect } from "react";
 import CheckBox from "./CheckBox";
-
+import DropDown from "./DropDown";
 //Character checking still
 
 import { capitalizeFirstLetter } from "../utils/CharacterCasing";
 
 export default function Filters({filterOptions,searchParams,setSearchParams}){
      
-    //Might need something to just handle the iteration process of these mfs
+    //We want useStates for all of our drop down menus that will change
 
     const[checkBox,setCheckBox] = useState([]);
     
+
     const changeCheckBox = (state) =>{
         setCheckBox(state);
     }
-
-
-    
 
     useEffect(()=>{
         //State is a basic key-value pair that we use to change a value
@@ -46,19 +44,27 @@ export default function Filters({filterOptions,searchParams,setSearchParams}){
     return (
         //This needs to be sticky. Basically needs to stay in its own spot the entire time 
         <div className="flex flex-col bg-[#5c9ce6] pl-2 text-slate-50 rounded-lg w-60 h-auto">
-            <h1 className=" text-3xl pb-10 pr-4">Filters</h1>
-            
-            <div className="flex flex-col ">
-                {filterOptions.map(([key,filterList])=>{
-                    return (<div className="flex flex-col items-start" key={key}>
+            <h1 className=" text-4xl pb-10 pr-4">Filters</h1>
+            {/* What we want to do here instead is create a drop down under each category */}
+            <div className="flex flex-col items-center">
+                {/* {filterOptions.map(([key,filterList])=>{
+                    return (
+                    <div className="flex flex-col items-start" key={key}>
                         <h1 className="pl-4 text-xl font-bold pb-3 ">{capitalizeFirstLetter(key)}</h1>
                         <ul className="">
                             {filterList.map((item,index)=>{
                                 return (<CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={key} checkBoxKey={item} toggleCheckBox={changeCheckBox}/>)
                         })}
                         </ul>
+
                     </div>)
+                })} */}
+                {filterOptions.map(([key,filterList])=>{
+                    return (
+                            <DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key}/>
+                        )
                 })}
+                
             </div>
         </div>
     )

@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
+import { json } from "react-router-dom";
 
-import { searchParametersEmpty } from "../utils/SearchParameters";
+import { searchMapEmpty, searchParametersEmpty } from "../utils/SearchParameters";
 
 //We need to send in all of our request setters
 export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchParameters}){
     
     const[searchInput,setSearchInput] = useState('');
-    const[searchRequestParameters,setSearchRequestParameters] = useState(searchParameters);
+    
 
     const handleInputChange = (e)=>{
         setSearchInput(e.target.value);
@@ -19,21 +20,37 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
         e.preventDefault();
         if (searchInput.length<=0 && searchParametersEmpty(searchParameters)) return;
       
-        
+        console.log("gameName:",searchInput);
         //Where all of our search parameters are specified. We need to watch out for the order here and find a fool proof way to handle that
         //Best I can think of right now is to go through all of them and filter by if they are turned true or not
-        const searchParams = {
-            "name":searchInput
-        }
+        
+        const searchArgs = new Map();
+        
+
+        //NOTE: State seems to be refreshed once we set our results so we want to make sure to check for if our map is defined
+        searchParameters.forEach((value,key)=>{
+          if (!searchMapEmpty(value)){
+            searchArgs.set(key,Array.from(value));
+          }
+        });
+        
+
+        console.log("Entries:", encodeURIComponent(searchArgs));
+        const jsonString = JSON.stringify(Object.fromEntries(searchArgs));
+        console.log("json string:",jsonString);
+        console.log(searchArgs)
         setLoading(true);
         axios.get("http://localhost:8080/search",{
           //Something weird with CORS was going on here, but Stringifying it fixed it...idk
           params:{
-            "searchArgs":JSON.stringify(searchParams)
+            "filterArgs": encodeURIComponent(jsonString),
+            "gameName": searchInput
           },
-          timeout:6000
-        }
-        )
+          headers:{
+            'Content-Type':'application/json'
+          },
+          timeout:6000 
+      })
         .then((res)=>{
             console.log("Results of query:",res.data);
             
@@ -53,14 +70,14 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
         .catch(error=>{
             console.log(error);
             setLoading(false);
-            setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+            setResultsEmptyMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
             setSuccess(false);
         })
       }
 
     return (
         //Search bar styling needs to be fixed
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center pb-4">
         <form onSubmit={handleSearchRequest} className="w-9/12">
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
@@ -87,7 +104,6 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
         />
         <button
           type="submit"
-          
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
           Search
