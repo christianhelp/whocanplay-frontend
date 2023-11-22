@@ -47,18 +47,6 @@ export default function Filters({filterOptions,searchParams,setSearchParams}){
             <h1 className=" text-4xl pb-10 pr-4">Filters</h1>
             {/* What we want to do here instead is create a drop down under each category */}
             <div className="flex flex-col items-center">
-                {/* {filterOptions.map(([key,filterList])=>{
-                    return (
-                    <div className="flex flex-col items-start" key={key}>
-                        <h1 className="pl-4 text-xl font-bold pb-3 ">{capitalizeFirstLetter(key)}</h1>
-                        <ul className="">
-                            {filterList.map((item,index)=>{
-                                return (<CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={key} checkBoxKey={item} toggleCheckBox={changeCheckBox}/>)
-                        })}
-                        </ul>
-
-                    </div>)
-                })} */}
                 {filterOptions.map(([key,filterList])=>{
                     return (
                             <DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key}/>
