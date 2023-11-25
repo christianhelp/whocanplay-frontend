@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import { json } from "react-router-dom";
 
 import { searchMapEmpty, searchParametersEmpty } from "../utils/SearchParameters";
 
@@ -77,14 +76,16 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
 
     return (
         //Search bar styling needs to be fixed
-    <div className="flex justify-center items-center pb-4">
+    <div className="flex justify-end pb-4 w-auto">
         <form onSubmit={handleSearchRequest} className="w-9/12">
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>
+      {/* Container to hold the whole thing */}
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg
+          {/* This is for the little search icon */}
+          <svg 
             className="w-4 h-4 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"

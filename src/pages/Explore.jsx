@@ -60,7 +60,7 @@ export default function Explore(){
             //This maps all of the values 
             Object.entries(data).map(([k,v])=>{
                 //Assigns the new value with the k-v pair
-                
+
                 setFilterOptions(new Map(filterOptions.set(k,v)))
                 setSearchParameters(new Map(searchParameters.set(k,new Set())));
             });
@@ -100,13 +100,13 @@ export default function Explore(){
                 </div>
                 :
             <div className="pt-5">
-                <h1 className="pt-4 mb-4 text-3xl font-extrabold text-gray-900  dark:text-white ">
+                {/* <h1 className="pt-4 mb-4 text-3xl font-extrabold text-gray-900  dark:text-white ">
                     Search and Filter For Games
-                    </h1>
+                    </h1> */}
                 <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchParameters={searchParameters}/>
                 <div className="flex">
                     <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters}/>
-                    <div className="pt-4 grid grid-cols-4 gap-4 px-8">
+                    <div className="pt-4 pb-12 grid grid-cols-4 gap-4 px-8 h-[100vh] overflow-y-auto">
                     {games.map((game,key) =>(
                         <GameCard key={key} gameName={game.name} gameGraphics={game.graphics} directX={game.direct} 
                         gameProcessor={game.processor} gameDescription={game.description} 
