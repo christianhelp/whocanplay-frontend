@@ -16,6 +16,7 @@ export default function Filters({filterOptions,searchParams,setSearchParams,setP
     const changeCheckBox = (state) =>{
         setCheckBox(state);
     }
+    
     const changePlayibilityFilter = (state)=>{
         setPlaybilityFilter(state);
     }

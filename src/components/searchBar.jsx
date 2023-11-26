@@ -4,8 +4,8 @@ import { useState } from "react";
 import { searchMapEmpty, searchParametersEmpty } from "../utils/SearchParameters";
 
 //We need to send in all of our request setters
-export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchParameters,playbilityFilter}){
-    
+export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,setSearchParameters,searchParameters,setPlayabilityFilter,playbilityFilter}){
+    //The use state for search input from the searchbar itself
     const[searchInput,setSearchInput] = useState('');
     
 
@@ -17,7 +17,7 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
     //This will handle making our request
     const handleSearchRequest = async (e) =>{
         e.preventDefault();
-        if (searchInput.length<=0 && playbilityFilter === "Playability: Highest" && searchParametersEmpty(searchParameters)) return;
+        if (searchInput.length<=0 && playbilityFilter.length <=0 && searchParametersEmpty(searchParameters)) return;
       
         console.log("gameName:",searchInput);
         //Where all of our search parameters are specified. We need to watch out for the order here and find a fool proof way to handle that
@@ -25,7 +25,6 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
         
         const searchArgs = new Map();
         
-
         //NOTE: State seems to be refreshed once we set our results so we want to make sure to check for if our map is defined
         searchParameters.forEach((value,key)=>{
           if (!searchMapEmpty(value)){
@@ -36,7 +35,7 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
 
         console.log("Entries:", encodeURIComponent(searchArgs));
         const jsonString = JSON.stringify(Object.fromEntries(searchArgs));
-        
+        //Here we want to clear the values
         console.log("playability filter:",playbilityFilter);
         setLoading(true);
         axios.get("http://localhost:8080/search",{

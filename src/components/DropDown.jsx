@@ -7,6 +7,8 @@ import {AnimatePresence, motion} from "framer-motion"
 export default function DropDown(props){
     const[isOpen,setIsOpen] = useState(false);
     
+    const[playabilityTitle,setplayabilityTitle] = useState(props.filterTitle);
+    console.log(playabilityTitle);
     //Variables of styling for the menu dropdowns 
     const menuVars = {
         initial:{
@@ -35,7 +37,7 @@ export default function DropDown(props){
             <button 
             onClick={()=>setIsOpen((prev)=>!prev)}
             className="  w-auto h-auto flex items-center justify-between font-bold text-lg rounded-sm tracking-wider">
-               {props.filterTitle}
+               {playabilityTitle}
                 {
                     !isOpen ? <AiOutlineCaretDown className=" h-8 duration-200"/> : <AiOutlineCaretDown className="h-8 transform rotate-180 duration-300"/>
                 }
@@ -54,7 +56,7 @@ export default function DropDown(props){
         !(props.filterTitle === "Playability") ? (
             <CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={props.checkBoxMapOriginKey} checkBoxKey={item} toggleCheckBox={props.toggleCheckBox}/>
         ) : (
-            <OrderByDropDown key={index} title={item} changePlayibilityFilter={props.changePlayibilityFilter}/>
+            <OrderByDropDown key={index} title={item} changePlayibilityFilter={props.changePlayibilityFilter} changePlayibilityTitle={setplayabilityTitle} changeIsOpen={setIsOpen}/>
         )
     ))
 }
@@ -66,16 +68,18 @@ export default function DropDown(props){
     )
 }
 
-export function OrderByDropDown({title,changePlayibilityFilter}){
-
+export function OrderByDropDown({title,changePlayibilityFilter,changePlayibilityTitle,changeIsOpen}){
+    
     
     const handleDropChange = ()=>{
         changePlayibilityFilter(title);
+        changePlayibilityTitle(title);
+        changeIsOpen(false);
     }
 
     return(
-<div onClick={handleDropChange} className=" w-full mb-[0.125rem] flex pl-[2rem] bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow ">
-    <button>
+<div className=" w-full mb-[0.125rem] flex pl-[2rem] hover:bg-slate-300 font-semibold rounded ">
+    <button onClick={handleDropChange}>
         {title}
     </button>
 </div>
