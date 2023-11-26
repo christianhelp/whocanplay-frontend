@@ -6,7 +6,7 @@ import {AnimatePresence, motion} from "framer-motion"
 
 export default function DropDown(props){
     const[isOpen,setIsOpen] = useState(false);
-
+    
     //Variables of styling for the menu dropdowns 
     const menuVars = {
         initial:{
@@ -48,18 +48,36 @@ export default function DropDown(props){
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                
                 className="overflow-y-auto origin-top bg-slate-400 top-20 flex flex-col items-start rounded-lg  w-full h-24 ">
-                    {
-                        props.filterValues.map((item,index)=>{
-                            return (<CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={props.checkBoxMapOriginKey} checkBoxKey={item} toggleCheckBox={props.toggleCheckBox}/>)
-                        })
-                    }
-
+                    
+    {props.filterValues.map((item, index) => (
+        !(props.filterTitle === "Playability") ? (
+            <CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={props.checkBoxMapOriginKey} checkBoxKey={item} toggleCheckBox={props.toggleCheckBox}/>
+        ) : (
+            <OrderByDropDown key={index} title={item} changePlayibilityFilter={props.changePlayibilityFilter}/>
+        )
+    ))
+}
                 </motion.div>
             }
             </AnimatePresence>
             
         </div>
+    )
+}
+
+export function OrderByDropDown({title,changePlayibilityFilter}){
+
+    
+    const handleDropChange = ()=>{
+        changePlayibilityFilter(title);
+    }
+
+    return(
+<div onClick={handleDropChange} className=" w-full mb-[0.125rem] flex pl-[2rem] bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow ">
+    <button>
+        {title}
+    </button>
+</div>
     )
 }

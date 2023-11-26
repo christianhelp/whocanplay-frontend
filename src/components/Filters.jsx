@@ -7,15 +7,17 @@ import DropDown from "./DropDown";
 
 import { capitalizeFirstLetter } from "../utils/CharacterCasing";
 
-export default function Filters({filterOptions,searchParams,setSearchParams}){
+export default function Filters({filterOptions,searchParams,setSearchParams,setPlaybilityFilter}){
      
     //We want useStates for all of our drop down menus that will change
 
     const[checkBox,setCheckBox] = useState([]);
-    
 
     const changeCheckBox = (state) =>{
         setCheckBox(state);
+    }
+    const changePlayibilityFilter = (state)=>{
+        setPlaybilityFilter(state);
     }
 
     useEffect(()=>{
@@ -48,12 +50,14 @@ export default function Filters({filterOptions,searchParams,setSearchParams}){
             {/* What we want to do here instead is create a drop down under each category */}
             <div className="flex flex-col items-center">
                 {filterOptions.map(([key,filterList])=>{
-                    return (
-                            <DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key}/>
-                        )
+                    
+                    return (<DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key} changePlayibilityFilter={changePlayibilityFilter}/>)
+                    
                 })}
                 
             </div>
         </div>
     )
 }
+
+

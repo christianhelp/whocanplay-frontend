@@ -26,7 +26,7 @@ export default function GameInfo(){
                     </div>
                     <div className='flex flex-col pr-8 pb-4 justify-center items-center'>
                         <div className='pb-48'>
-                            <p className='text-6xl'>{Game.gamePercent} Can Play!</p>
+                            <p className='text-6xl'>{Game.gamePercent}% Can Play!</p>
                         </div>
                         <div className='pb-6'>
                             <b className='text-3xl'>Minimum Graphics:</b>
@@ -37,10 +37,6 @@ export default function GameInfo(){
                             <b className='text-3xl'>Minimum Processor:</b>
                             <p className="font-normal text-gray-700 dark:text-gray-200"> {Game.gameProcessor}</p>
                         </div>
-                        <div>
-                            <b className='text-3xl'>DirectX Version:</b>
-                            <p className=" font-normal text-gray-700 dark:text-gray-200"> {Game.directX}</p> 
-                        </div>
                     </div>
 
                     <div className='flex flex-col pl-40 justify-center items-center'>
@@ -48,7 +44,6 @@ export default function GameInfo(){
                         <b className="text-2xl">About:</b>
                         <p className="mb-3  max-w-sm font-normal text-gray-700 dark:text-gray-200"> {Game.gameDescription}</p>
                     </div> 
-
                 </div>
             </div>
             :

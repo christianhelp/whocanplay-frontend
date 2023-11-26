@@ -10,22 +10,30 @@ import Filters from "../components/Filters";
 export default function Explore(){
     //This is setLoading in searchbar
     const [loading,setLoading] = useState(true);
+
     //This is setSuccess in searchBar
     const[success,setSuccess] = useState(true);
+
     //This is setSearchResults in searchbar
     const [games,setGames] = useState([]);
+    
     //This is for when we want to check if the results are empty or not
     const[errorLoadingMessage,setErrorLoadingMessage] = useState("");
     
     //For the filter options themselves
     //TODO: Make some logic so that these cannot both be checked at the same time 
-    const defaultFilters = [["Alphabetically",["AZ","ZA"]]];
+    const defaultFilters = [["Playability",["Highest","Lowest","Ascending","Descending"]]];
 
     //Basically what we a map that holds other maps. This way, we can use the title of the map to access values
     const[filterOptions,setFilterOptions] = useState(new Map(defaultFilters));
     
-    //I think we need two maps ngl. One is for all of the processing stuff and another would be for what arguments actually need to be passed
-    const[searchParameters,setSearchParameters] = useState(new Map([["Alphabetically",new Set()]]));
+    //This will keep track of all of our values that are selected at a time 
+    const[searchParameters,setSearchParameters] = useState(new Map([["Playability",new Set()]]));
+
+    //This keeps track of what value we have inside of our playability filter
+    const[playbilityFilter,setPlayabilityFilter] = useState("Playability: Highest");
+
+
 
     //Use effect for explore query
     useEffect( ()=>{
@@ -76,6 +84,13 @@ export default function Explore(){
         })
             return ()=>{}
         },[]);
+        //This is a temporary test
+        useEffect(()=>{
+            
+            console.log("Playability filter is:",playbilityFilter);
+
+            return ()=>{}
+        },[playbilityFilter])
 
     return (
         <div className="flex flex-col justify-center items-center">
@@ -85,7 +100,7 @@ export default function Explore(){
                 :
                 !success ?
                 <div className="flex flex-col pt-8">
-                    <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} filterOptions={["Test","dicks"]}/>
+                    <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchParameters={searchParameters} playbilityFilter={playbilityFilter}/>
                     <div className="flex flex-col items-center pb-8">
                         <ErrorLoading errorMessage={errorLoadingMessage}/>
                     <div className='flex'>
@@ -100,17 +115,14 @@ export default function Explore(){
                 </div>
                 :
             <div className="pt-5">
-                {/* <h1 className="pt-4 mb-4 text-3xl font-extrabold text-gray-900  dark:text-white ">
-                    Search and Filter For Games
-                    </h1> */}
-                <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchParameters={searchParameters}/>
+                <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchParameters={searchParameters} playbilityFilter={playbilityFilter}/>
                 <div className="flex">
-                    <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters}/>
-                    <div className="pt-4 pb-12 grid grid-cols-4 gap-4 px-8 h-[100vh] overflow-y-auto">
+                    <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters} setPlaybilityFilter={setPlayabilityFilter}/>
+                    <div className="pt-4  items-center justify-center pb-12 grid grid-cols-4 gap-4 px-8 h-[100vh] overflow-y-auto">
                     {games.map((game,key) =>(
-                        <GameCard key={key} gameName={game.name} gameGraphics={game.graphics} directX={game.direct} 
+                        <GameCard key={key} gameName={game.gameName} gameGraphics={game.gpu} 
                         gameProcessor={game.processor} gameDescription={game.description} 
-                        gamePercent={game.percent} imageURL={game.imageURL}/>
+                        gamePercent={game.percent} imageURL={game.url}/>
                     ))}
                 </div>
                 </div>

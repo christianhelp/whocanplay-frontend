@@ -4,7 +4,7 @@ import { useState } from "react";
 import { searchMapEmpty, searchParametersEmpty } from "../utils/SearchParameters";
 
 //We need to send in all of our request setters
-export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchParameters}){
+export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,searchParameters,playbilityFilter}){
     
     const[searchInput,setSearchInput] = useState('');
     
@@ -17,7 +17,7 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
     //This will handle making our request
     const handleSearchRequest = async (e) =>{
         e.preventDefault();
-        if (searchInput.length<=0 && searchParametersEmpty(searchParameters)) return;
+        if (searchInput.length<=0 && playbilityFilter === "Playability: Highest" && searchParametersEmpty(searchParameters)) return;
       
         console.log("gameName:",searchInput);
         //Where all of our search parameters are specified. We need to watch out for the order here and find a fool proof way to handle that
@@ -36,14 +36,15 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
 
         console.log("Entries:", encodeURIComponent(searchArgs));
         const jsonString = JSON.stringify(Object.fromEntries(searchArgs));
-        console.log("json string:",jsonString);
-        console.log(searchArgs)
+        
+        console.log("playability filter:",playbilityFilter);
         setLoading(true);
         axios.get("http://localhost:8080/search",{
           //Something weird with CORS was going on here, but Stringifying it fixed it...idk
           params:{
             "filterArgs": encodeURIComponent(jsonString),
-            "gameName": searchInput
+            "gameName": searchInput,
+            "orderBy":playbilityFilter
           },
           headers:{
             'Content-Type':'application/json'
