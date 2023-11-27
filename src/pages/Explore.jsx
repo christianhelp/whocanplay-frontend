@@ -84,6 +84,7 @@ export default function Explore(){
         })
             return ()=>{}
         },[]);
+        
         //This is a temporary test
         useEffect(()=>{
             
@@ -114,11 +115,11 @@ export default function Explore(){
                     </div>
                 </div>
                 :
-            <div className="pt-5">
-                <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} setSearchParameters={setSearchParameters} searchParameters={searchParameters} setPlayabilityFilter={setPlayabilityFilter} playbilityFilter={playbilityFilter}/>
-                <div className="flex">
-                    <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters} setPlaybilityFilter={setPlayabilityFilter}/>
-                    <div className="pt-4   justify-center pb-12 grid grid-cols-4 gap-4 px-8 h-[100vh] overflow-y-auto">
+            <div className=" flex pt-5">
+                <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters} setPlaybilityFilter={setPlayabilityFilter}/>
+                <div className="flex-col">
+                    <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} setSearchParameters={setSearchParameters} searchParameters={searchParameters} setPlayabilityFilter={setPlayabilityFilter} playbilityFilter={playbilityFilter}/>
+                    <div className="pt-4  justify-center pb-12 grid grid-cols-4 gap-4 px-8 h-[100vh] overflow-y-auto">
                     {games.map((game,key) =>(
                         <GameCard key={key} gameName={game.gameName} gameGraphics={game.gpu} 
                         gameProcessor={game.processor} gameDescription={game.description} 

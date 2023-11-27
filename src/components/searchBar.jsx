@@ -30,8 +30,13 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
           if (!searchMapEmpty(value)){
             searchArgs.set(key,Array.from(value));
           }
+          value.clear();
+          searchParameters.set(key,new Set());
         });
+        console.log("After clearing:",searchParameters);
+        setSearchParameters(searchParameters);
         
+
 
         console.log("Entries:", encodeURIComponent(searchArgs));
         const jsonString = JSON.stringify(Object.fromEntries(searchArgs));
@@ -63,20 +68,20 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
                 setResultsEmptyMessage("Oh No:( Looks like No Search Results available");
                 setLoading(false);
                 setSuccess(false);
-            }
-            
+            } 
         })
         .catch(error=>{
             console.log(error);
             setLoading(false);
             setResultsEmptyMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
             setSuccess(false);
+            
         })
       }
 
     return (
         //Search bar styling needs to be fixed
-    <div className="flex justify-end pb-4 w-auto">
+    <div className="flex justify-center pb-4 w-auto">
         <form onSubmit={handleSearchRequest} className="w-9/12">
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
