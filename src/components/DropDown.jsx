@@ -3,8 +3,7 @@ import CheckBox from "./CheckBox";
 import {AiOutlineCaretDown} from "react-icons/ai";
 import { useState } from "react";
 import {AnimatePresence, motion} from "framer-motion"
-import VramDropDown from "./VramDropDown";
-
+import OrderByDropDown from "./OrderByDropDown";
 export default function DropDown(props){
     const[isOpen,setIsOpen] = useState(false);
     
@@ -55,33 +54,15 @@ export default function DropDown(props){
         !(props.filterTitle === "Playability") ? (
             <CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={props.checkBoxMapOriginKey} checkBoxKey={item} toggleCheckBox={props.toggleCheckBox} makeDropDownSearchRequest={props.makeDropDownSearchRequest}/>
         ) : (
-            <OrderByDropDown key={index} title={item} changePlayibilityFilter={props.changePlayibilityFilter} changePlayibilityTitle={setplayabilityTitle} changeIsOpen={setIsOpen} makeDropDownSearchRequest={props.makeDropDownSearchRequest}/>
+            <OrderByDropDown key={index} title={item} changePlayibilityTitle={setplayabilityTitle} changeIsOpen={setIsOpen} makeDropDownSearchRequest={props.makeDropDownSearchRequest}/>
         )
     ))
 }
                 </motion.div>
             }
-            </AnimatePresence>
-            
+            </AnimatePresence>  
         </div>
     )
 }
 
-export function OrderByDropDown({title,changePlayibilityFilter,changePlayibilityTitle,changeIsOpen,makeDropDownSearchRequest}){
-    const handleDropChange = ()=>{
-        // changePlayibilityFilter(title);
-        changePlayibilityTitle(title);
-        changeIsOpen(false);
-        makeDropDownSearchRequest(title);
-        //Make our search request using our axios shii
 
-    }
-
-    return(
-<div className=" w-full mb-[0.125rem] flex pl-[2rem] hover:bg-slate-300 font-semibold rounded ">
-    <button onClick={handleDropChange}>
-        {title}
-    </button>
-</div>
-    )
-}

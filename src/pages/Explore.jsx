@@ -6,14 +6,17 @@ import GameCard from "../components/GameCard";
 import ErrorLoading from "../components/ErrorLoading";
 import SearchBar from "../components/SearchBar";
 import Filters from "../components/Filters";
+import { useRef } from "react";
 
 export default function Explore(){
     //This is setLoading in searchbar
     const [loading,setLoading] = useState(true);
 
     //This is setSuccess in searchBar
-    const[success,setSuccess] = useState(true);
-
+    const success = useRef(true);
+    const setSuccess = (bool)=>{
+        success.current = bool;
+    }
     //This is setSearchResults in searchbar
     const [games,setGames] = useState([]);
     
@@ -34,8 +37,12 @@ export default function Explore(){
     const[playbilityFilter,setPlayabilityFilter] = useState("Playability: Highest");
 
     const makeDropDownSearchRequest = (playbilityFilter)=>{
-        console.log("Called!");
+        if (!success.current){
+            setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+            return;
+        }
         setLoading(true);
+        
         axios.get("http://localhost:8080/search",{
             params:{
                 "orderBy":playbilityFilter
@@ -45,6 +52,14 @@ export default function Explore(){
         .then(res=>{
             const data = res.data;
             console.log(data);
+            if (data.length <= 0 || !data){
+                setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+                setLoading(false);
+                setSuccess(false);
+                console.log("About to break, success is currently:",success.current);
+                console.log("breaking!");
+                return;
+            }
             setGames(data);
             setSuccess(true);
             setLoading(false);
@@ -59,15 +74,28 @@ export default function Explore(){
 
     //Use effect for explore query
     useEffect( ()=>{
+        console.log("Explore called!");
+        if (!success.current){
+            setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+            return;
+        }
         axios.get("http://localhost:8080/explore",{
             timeout:6000
-        })
+        }) 
         .then((res)=>{
             const data = res.data;
             console.log(data);
+            if (data.length <= 0 || !data){
+                setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+                setLoading(false);
+                setSuccess(false);
+                console.log("About to break, success is currently:",success.current);
+                console.log("breaking!");
+                return;
+            }
             setGames(data);
             setLoading(false);
-            setSuccess(true);
+            setSuccess(true);     
         })
         .catch((err)=>{
             console.error(`The following error occured: ${err}`);
@@ -77,8 +105,15 @@ export default function Explore(){
         })
         },[]);
 
-        //Will probably designate a filter option to return a set of all the possible graphics and processors that we can filter by at the moment
+        //Filter call
         useEffect(()=>{
+            console.log("Filters called!");
+            console.log("Success is currently:",success.current);
+            if (!success.current){
+            console.log("Breaking on filters!");
+            setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+            return;
+            }
             setLoading(true);
             axios.get("http://localhost:8080/filters",{
             timeout:6000
@@ -86,6 +121,13 @@ export default function Explore(){
         .then(res=>{
             const data = res.data;
             console.log(data);
+            if (data.length <= 0 || !data){
+                setErrorLoadingMessage();
+                setLoading(false);
+                setSuccess(false);
+                console.log("breaking on filters!");
+                return;
+            }
             //This maps all of the values 
             Object.entries(data).map(([k,v])=>{
                 //Assigns the new value with the k-v pair
@@ -111,13 +153,13 @@ export default function Explore(){
                 loading ? 
                 <Loader/>
                 :
-                !success ?
+                !success.current ?
                 <div className="flex flex-col pt-8">
                     <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} searchParameters={searchParameters} playbilityFilter={playbilityFilter}/>
                     <div className="flex flex-col items-center pb-8">
                         <ErrorLoading errorMessage={errorLoadingMessage}/>
                     <div className='flex'>
-                        <button onClick={()=>{setSuccess(true)}} className=" group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button onClick={()=>{console.log("Called");setSuccess(true)}} className=" group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg className=" -scale-x-100 pl-4 transition ease-in-out delay-100 group-hover:-translate-x-4 w-8 h-6 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>

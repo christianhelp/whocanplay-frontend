@@ -1,8 +1,8 @@
 //Filter options are going to be all of the potential things that we can filter by
 
 import { useState, useEffect } from "react";
-import CheckBox from "./CheckBox";
 import DropDown from "./DropDown";
+import VramDropDown from "./VramDropDown";
 //Character checking still
 
 import { capitalizeFirstLetter } from "../utils/CharacterCasing";
@@ -52,7 +52,7 @@ export default function Filters({filterOptions,searchParams,setSearchParams,setP
                 {filterOptions.map(([key,filterList])=>{
                     return (<DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key} changePlayibilityFilter={changePlayibilityFilter} makeDropDownSearchRequest={makeDropDownSearchRequest}/>)
                 })}
-                
+            <VramDropDown filterTitle={'Vram'}/>
             </div>
         </div>
     )
