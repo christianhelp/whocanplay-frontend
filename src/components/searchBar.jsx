@@ -1,14 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
-
+//Fix the z-index thing 
 import { searchMapEmpty, searchParametersEmpty } from "../utils/SearchParameters";
 
 //We need to send in all of our request setters
 export default function SearchBar({setLoading,setSuccess,setSearchResults,setResultsEmptyMessage,setSearchParameters,searchParameters,setPlayabilityFilter,playbilityFilter}){
-    //The use state for search input from the searchbar itself
+    
+  //The use state for search input from the searchbar itself
     const[searchInput,setSearchInput] = useState('');
     
-
+    //Handles change of input from searchbar
     const handleInputChange = (e)=>{
         setSearchInput(e.target.value);
     }
@@ -18,33 +19,27 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
     const handleSearchRequest = async (e) =>{
         e.preventDefault();
         if (searchInput.length<=0 && playbilityFilter.length <=0 && searchParametersEmpty(searchParameters)) return;
-      
-        console.log("gameName:",searchInput);
-        //Where all of our search parameters are specified. We need to watch out for the order here and find a fool proof way to handle that
-        //Best I can think of right now is to go through all of them and filter by if they are turned true or not
         
+        //For our search args to be parsed and sent through
         const searchArgs = new Map();
         
-        //NOTE: State seems to be refreshed once we set our results so we want to make sure to check for if our map is defined
         searchParameters.forEach((value,key)=>{
           if (!searchMapEmpty(value)){
             searchArgs.set(key,Array.from(value));
           }
+          //Here we want to clear the values for each of the sets to ensure they are empty
           value.clear();
           searchParameters.set(key,new Set());
         });
-        console.log("After clearing:",searchParameters);
+        
+        //Set to ensure that the search parameters are empty
         setSearchParameters(searchParameters);
         
-
-
-        console.log("Entries:", encodeURIComponent(searchArgs));
         const jsonString = JSON.stringify(Object.fromEntries(searchArgs));
-        //Here we want to clear the values
-        console.log("playability filter:",playbilityFilter);
+    
         setLoading(true);
         axios.get("http://localhost:8080/search",{
-          //Something weird with CORS was going on here, but Stringifying it fixed it...idk
+          //Because maps are basically useless in JS, we have to go through this encodedURI part to make it work
           params:{
             "filterArgs": encodeURIComponent(jsonString),
             "gameName": searchInput,
@@ -86,7 +81,6 @@ export default function SearchBar({setLoading,setSuccess,setSearchResults,setRes
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>
-      {/* Container to hold the whole thing */}
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           {/* This is for the little search icon */}

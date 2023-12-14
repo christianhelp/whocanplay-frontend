@@ -40,7 +40,6 @@ export default function HomePage(){
                     <h1><span ref={el}></span></h1>
                     <FaSteamSymbol/>
                 </div>
-                
                 <nav className="navbuttons">
                     <ul className="navs">
                         <li className="hover:cursor-pointer"><ScrollLink to="about" smooth={true} duration={500} spy={true} offset={-50} className="scroll-link">About</ScrollLink></li>
@@ -54,43 +53,62 @@ export default function HomePage(){
                     </ul>
                 </nav>
                 <div name="about" className="about" id="about_id">
-                    <h1>
+                    <h1 className="pl-2 pb-5 text-7xl font-bold" align='left'>
                         About
                     </h1>
-                    <div className="description">
-                    <p className="pb-5">
-                        Steam is a trendy marketplace for developers to upload and sell their games. 
-                        Because of this, It has become very well-known and many people use it. On top of 
-                        selling games, Steam also provides users with a service called the 
-                        <a style={{color:"#1f6dc7"}}href="https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam"> Steam Hardware & Software survey</a>.
-                    </p>
-                    <p className="pb-5">
-                        In short, the Steam Hardware & Software Survey conducts a monthly survey of user's hardware and software to collect and further understand user's computer details. 
-                        With this information, Steam says that this will be incredibly helpful in making decisions about technological investments and products to offer. 
-                        As avid gamers and consumers, we could not agree more with this statement.
-                    </p>
-                    <p className="pb-5">
-                        That is why we sought to better contextualize and provide users with a great experience 
-                        to learn about all that the Steam Hardware and Software Survey offers. 
-                        This project aims to cater to the needs of two distinct, yet interconnected audiences. 
-                        Firstly, it is designed to provide valuable insights to video game developers who seek to 
-                        utilize this resource as a pivotal marketing tool. 
-                    </p>
-                    <p>
-                        By offering a comprehensive understanding of the demographics and
-                        preferences of potential players, game developers can make informed decisions in terms of game
-                        design, marketing strategies, and target audience engagement. Secondly, this database also serves the
-                        interests of gaming enthusiasts and hobbyists, offering them an invaluable resource to delve deeper into
-                        the dynamics of who can enjoy a particular video game.</p>
+                    <div className="description w-full text-2xl">
+                        <div className="space-y-10">
+
+                            <div className="pl-[48%] flex justify-end">
+                                <p align='right'>
+                                    Steam is a trendy marketplace for developers to upload and sell their games. 
+                                    Because of this, It has become very well-known and many people use it. On top of 
+                                    selling games, Steam also provides users with a service called the 
+                                    <a style={{color:"#1f6dc7"}}href="https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam"> Steam Hardware & Software survey</a>.
+                                </p>
+                            </div>
+
+                            <div className="pr-[48%] flex justify-end">
+                                <p align='left'>
+                                    In short, the Steam Hardware & Software Survey conducts a monthly survey of user's hardware and software to collect and further understand user's computer details. 
+                                    With this information, Steam says that this will be incredibly helpful in making decisions about technological investments and products to offer. 
+                                    As avid gamers and consumers, we could not agree more with this statement.
+                                </p>
+                            </div>
+
+                            <div className="pl-[48%] flex justify-end">
+                                <p align='right'>
+                                    That is why we sought to better contextualize and provide users with a great experience 
+                                    to learn about all that the Steam Hardware and Software Survey offers. 
+                                    This project aims to cater to the needs of two distinct, yet interconnected audiences. 
+                                    Firstly, it is designed to provide valuable insights to video game developers who seek to 
+                                    utilize this resource as a pivotal marketing tool. 
+                                </p>
+                            </div>
+
+                            <div className="pr-[48%] flex justify-end">
+                                <p align='left'>
+                                    By offering a comprehensive understanding of the demographics and
+                                    preferences of potential players, game developers can make informed decisions in terms of game
+                                    design, marketing strategies, and target audience engagement. Secondly, this database also serves the
+                                    interests of gaming enthusiasts and hobbyists, offering them an invaluable resource to delve deeper into
+                                    the dynamics of who can enjoy a particular video game.
+                                </p>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
-                <div name="how" className="how">
-                    <h1>How Does It Work?</h1>
-                    <p>"Who Can Play?" uses data collected from Steam's Hardware Survey and the minimum requirements for each Steam game. It compares each game's GPU requirement with what the userbase currently has, and sums up all users who meet that requirement. </p>
-                    <p>A percentage of the users who have sufficient hardware is generated. This way, we can answer the question: who can play?</p>
-                         
-
-                    <p>"Who Can Play?" is made possible with React, Tailwind, Spring Boot, and SQL.</p>
+                <div className="how pl-2 pr-[2%]">
+                    <h1 className='font-bold' align='left'>How Does It Work?</h1>
+                    <div className='flex flex-col justify-end'>
+                        <div className='pl-[30%] text-2xl' align='right'>
+                            <p>"Who Can Play?" uses data collected from Steam's Hardware Survey and the minimum requirements for each Steam game. It compares each game's GPU requirement with what the userbase currently has, and sums up all users who meet that requirement. </p>
+                            <p>A percentage of the users who have sufficient hardware is generated. This way, we can answer the question: who can play?</p>
+                            <p>"Who Can Play?" is made possible with React, Tailwind, Spring Boot, and SQL.</p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -80,29 +80,23 @@
     font-size: 24px;
 }
 
-
-
 .about{
     display: flex;
     color:whitesmoke;
-    background-color: #5c9ce6;
     flex-direction: column;
     padding-bottom: 4%;
 }
 
 .about h1 {
-    font-size: 40px;
+    
+    color:#1f6dc7;
 }
-
 
 .description{
     display: flex;
-    flex-direction: column;
-    font: 24px bold;
-    justify-content: center;
-    align-items: center;
-    padding-left: 20%;
-    padding-right: 20%;
+    font: bold;
+    padding-right: 2%;
+    padding-left: 1%;
 }
 
 .description p {
@@ -114,17 +108,17 @@
 .how{
     display: flex;
     flex-direction: column;
-    font: 24px bold;
-    justify-content: center;
-    align-items: center;
-    padding-left: 20%;
-    padding-right: 20%;
+    font: bold;
     padding-top: 2%;
     padding-bottom: 8%;
     color: whitesmoke;
 }
+
 .how h1{
-    font-size: 40px;
+    justify-content: left;
+    font-size: 50px;
+    padding-bottom: 2%;
+    color: #1f6dc7;
 }
 
 .how p {
