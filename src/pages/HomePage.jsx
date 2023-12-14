@@ -53,7 +53,7 @@ export default function HomePage(){
                     </ul>
                 </nav>
                 <div name="about" className="about" id="about_id">
-                    <h1 className="pl-2 pb-5 text-7xl font-bold" align='left'>
+                    <h1 className="pl-[1%] pb-5 text-7xl font-bold" align='left'>
                         About
                     </h1>
                     <div className="description w-full text-2xl">
@@ -102,9 +102,11 @@ export default function HomePage(){
                 <div className="how pl-2 pr-[2%]">
                     <h1 className='font-bold' align='left'>How Does It Work?</h1>
                     <div className='flex flex-col justify-end'>
-                        <div className='pl-[30%] text-2xl' align='right'>
+                        <div className='pl-[45%] text-2xl' align='right'>
                             <p>"Who Can Play?" uses data collected from Steam's Hardware Survey and the minimum requirements for each Steam game. It compares each game's GPU requirement with what the userbase currently has, and sums up all users who meet that requirement. </p>
                             <p>A percentage of the users who have sufficient hardware is generated. This way, we can answer the question: who can play?</p>
+                        </div>
+                        <div className='pt-3 pr-[30%] text-2xl' align='left'>
                             <p>"Who Can Play?" is made possible with React, Tailwind, Spring Boot, and SQL.</p>
                         </div>
                     </div>

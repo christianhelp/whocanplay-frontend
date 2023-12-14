@@ -3,6 +3,7 @@ import CheckBox from "./CheckBox";
 import {AiOutlineCaretDown} from "react-icons/ai";
 import { useState } from "react";
 import {AnimatePresence, motion} from "framer-motion"
+import VramDropDown from "./VramDropDown";
 
 export default function DropDown(props){
     const[isOpen,setIsOpen] = useState(false);
@@ -30,8 +31,6 @@ export default function DropDown(props){
         }
     }
 
-    //We will add vram along with a few other things
-
     return (
         <div className=" pt-24 border-b-4 border-bg-slate-400  relative flex flex-col items-center w-full h-auto">
             <button 
@@ -54,9 +53,9 @@ export default function DropDown(props){
                     
     {props.filterValues.map((item, index) => (
         !(props.filterTitle === "Playability") ? (
-            <CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={props.checkBoxMapOriginKey} checkBoxKey={item} toggleCheckBox={props.toggleCheckBox}/>
+            <CheckBox key={index} checkBoxTitle={item} checkBoxMapOrigin={props.checkBoxMapOriginKey} checkBoxKey={item} toggleCheckBox={props.toggleCheckBox} makeDropDownSearchRequest={props.makeDropDownSearchRequest}/>
         ) : (
-            <OrderByDropDown key={index} title={item} changePlayibilityFilter={props.changePlayibilityFilter} changePlayibilityTitle={setplayabilityTitle} changeIsOpen={setIsOpen}/>
+            <OrderByDropDown key={index} title={item} changePlayibilityFilter={props.changePlayibilityFilter} changePlayibilityTitle={setplayabilityTitle} changeIsOpen={setIsOpen} makeDropDownSearchRequest={props.makeDropDownSearchRequest}/>
         )
     ))
 }
@@ -68,13 +67,14 @@ export default function DropDown(props){
     )
 }
 
-export function OrderByDropDown({title,changePlayibilityFilter,changePlayibilityTitle,changeIsOpen}){
-    
-    
+export function OrderByDropDown({title,changePlayibilityFilter,changePlayibilityTitle,changeIsOpen,makeDropDownSearchRequest}){
     const handleDropChange = ()=>{
-        changePlayibilityFilter(title);
+        // changePlayibilityFilter(title);
         changePlayibilityTitle(title);
         changeIsOpen(false);
+        makeDropDownSearchRequest(title);
+        //Make our search request using our axios shii
+
     }
 
     return(

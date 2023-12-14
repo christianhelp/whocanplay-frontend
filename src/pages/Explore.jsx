@@ -33,7 +33,29 @@ export default function Explore(){
     //This keeps track of what value we have inside of our playability filter
     const[playbilityFilter,setPlayabilityFilter] = useState("Playability: Highest");
 
-
+    const makeDropDownSearchRequest = (playbilityFilter)=>{
+        console.log("Called!");
+        setLoading(true);
+        axios.get("http://localhost:8080/search",{
+            params:{
+                "orderBy":playbilityFilter
+            },
+            timeout:6000
+        })
+        .then(res=>{
+            const data = res.data;
+            console.log(data);
+            setGames(data);
+            setSuccess(true);
+            setLoading(false);
+        })
+       .catch((err)=>{
+            console.error(`The following error occured: ${err}`);
+            setLoading(false);
+            setErrorLoadingMessage("Uh Oh! A connection error occured\nPlease Try Again Later\n");
+            setSuccess(false);
+        });
+    }
 
     //Use effect for explore query
     useEffect( ()=>{
@@ -41,7 +63,6 @@ export default function Explore(){
             timeout:6000
         })
         .then((res)=>{
-            console.log("Success!");
             const data = res.data;
             console.log(data);
             setGames(data);
@@ -68,7 +89,6 @@ export default function Explore(){
             //This maps all of the values 
             Object.entries(data).map(([k,v])=>{
                 //Assigns the new value with the k-v pair
-
                 setFilterOptions(new Map(filterOptions.set(k,v)))
                 setSearchParameters(new Map(searchParameters.set(k,new Set())));
             });
@@ -84,14 +104,6 @@ export default function Explore(){
         })
             return ()=>{}
         },[]);
-        
-        //This is a temporary test
-        useEffect(()=>{
-            
-            console.log("Playability filter is:",playbilityFilter);
-
-            return ()=>{}
-        },[playbilityFilter])
 
     return (
         <div className="flex flex-col justify-center items-center">
@@ -116,7 +128,7 @@ export default function Explore(){
                 </div>
                 :
             <div className=" flex pt-5">
-                <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters} setPlaybilityFilter={setPlayabilityFilter}/>
+                <Filters filterOptions={Array.from(filterOptions)} searchParams={searchParameters} setSearchParams={setSearchParameters} setPlaybilityFilter={setPlayabilityFilter} makeDropDownSearchRequest={makeDropDownSearchRequest}/>
                 <div className="flex-col">
                     <SearchBar setLoading={setLoading} setSuccess={setSuccess} setSearchResults={setGames} setResultsEmptyMessage={setErrorLoadingMessage} setSearchParameters={setSearchParameters} searchParameters={searchParameters} setPlayabilityFilter={setPlayabilityFilter} playbilityFilter={playbilityFilter}/>
                     <div className="pt-4  justify-center pb-12 grid grid-cols-4 gap-4 px-8 h-[100vh] overflow-y-auto">

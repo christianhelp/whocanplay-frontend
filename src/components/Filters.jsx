@@ -7,7 +7,7 @@ import DropDown from "./DropDown";
 
 import { capitalizeFirstLetter } from "../utils/CharacterCasing";
 
-export default function Filters({filterOptions,searchParams,setSearchParams,setPlaybilityFilter}){
+export default function Filters({filterOptions,searchParams,setSearchParams,setPlaybilityFilter,makeDropDownSearchRequest}){
      
     //We want useStates for all of our drop down menus that will change
 
@@ -45,15 +45,12 @@ export default function Filters({filterOptions,searchParams,setSearchParams,setP
     
     
     return (
-        //This needs to be sticky. Basically needs to stay in its own spot the entire time 
+        
         <div className="flex flex-col bg-[#5c9ce6] text-slate-50 rounded-lg w-80 h-[100vh]">
             <h1 className=" text-4xl pr-4">Filters</h1>
-            {/* What we want to do here instead is create a drop down under each category */}
             <div className="flex flex-col items-center">
                 {filterOptions.map(([key,filterList])=>{
-                    
-                    return (<DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key} changePlayibilityFilter={changePlayibilityFilter}/>)
-                    
+                    return (<DropDown filterTitle={capitalizeFirstLetter(key)} filterValues={filterList} key={key} toggleCheckBox={changeCheckBox} checkBoxMapOriginKey={key} changePlayibilityFilter={changePlayibilityFilter} makeDropDownSearchRequest={makeDropDownSearchRequest}/>)
                 })}
                 
             </div>
