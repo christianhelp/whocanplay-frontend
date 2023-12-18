@@ -95,7 +95,6 @@ export default function HomePage(){
                                     the dynamics of who can enjoy a particular video game.
                                 </p>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -106,7 +105,7 @@ export default function HomePage(){
                             <p>"Who Can Play?" uses data collected from Steam's Hardware Survey and the minimum requirements for each Steam game. It compares each game's GPU requirement with what the userbase currently has, and sums up all users who meet that requirement. </p>
                             <p>A percentage of the users who have sufficient hardware is generated. This way, we can answer the question: who can play?</p>
                         </div>
-                        <div className='pt-3 pr-[30%] text-2xl' align='left'>
+                        <div className='pt-5 pr-[30%] text-2xl' align='left'>
                             <p>"Who Can Play?" is made possible with React, Tailwind, Spring Boot, and SQL.</p>
                         </div>
                     </div>
